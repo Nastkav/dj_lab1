@@ -8,12 +8,21 @@ root.geometry("500x500")
 connection = pymysql.connect(
         host='localhost',
         user='root',
-        password = "",
+        password = "newpassword",
         db='shipping',
         )
 
 
 cursor = connection.cursor()
+
+ships = """CREATE TABLE ships (
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(255),
+                        cargo_capacity FLOAT,
+                        passengers_capacity INT,
+                        available BIT
+                        )"""
+cursor.execute(ships)
 
 flights = """CREATE TABLE flights (
                         id INT PRIMARY KEY AUTO_INCREMENT,
@@ -25,17 +34,6 @@ flights = """CREATE TABLE flights (
                         FOREIGN KEY (ship_id) REFERENCES ships(id)
                         )"""
 cursor.execute(flights)
-
-
-ships = """CREATE TABLE ships (
-                        id INT PRIMARY KEY AUTO_INCREMENT,
-                        name VARCHAR(255),
-                        cargo_capacity FLOAT,
-                        passengers_capacity INT,
-                        available BIT
-                        )"""
-cursor.execute(ships)
-
 
 tickets = """CREATE TABLE tickets (
                         id INT PRIMARY KEY AUTO_INCREMENT,
