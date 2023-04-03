@@ -156,6 +156,8 @@ class MainPanel:
             self.departure_date.delete(0, END)
             self.arrival_date.delete(0, END)
             self.ship_id.delete(0, END)
+            
+            
     def read_flights(self):
         read_window = Toplevel(self.master)
         read_window.title("Flights")
